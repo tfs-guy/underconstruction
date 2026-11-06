@@ -3,23 +3,24 @@
 namespace LarsJanssen\UnderConstruction\Test\Integration;
 
 use LarsJanssen\UnderConstruction\Test\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class UnderConstructionModeTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_redirects_users_who_have_not_been_granted_access_to_a_under_construction_page()
     {
         $this->assertCannotVisitProductionSite();
     }
 
-    /** @test */
+    #[Test]
     public function it_only_redirects_users_if_under_construction_is_enabled()
     {
         $this->app['config']->set('under-construction.enabled', false);
         $this->assertCanVisitProductionSite();
     }
 
-    /** @test */
+    #[Test]
     public function it_sets_session_correctly_after_successful_login()
     {
         $this->app['config']->set('under-construction.hash', '$2y$10$c103PP/1gdUtfVC.REX1H.9PfiLU0n99jWwtL6v7Fb6R8gSoT4N8C');
@@ -28,9 +29,11 @@ class UnderConstructionModeTest extends TestCase
             ->assertSessionHas('can_visit', true);
     }
 
-    /** @test */
+    #[Test]
     public function it_disables_login_for_three_minute_after_three_incorrect_attempts()
     {
+        $this->freezeTime();
+
         $this->unsuccessfulLogin()
             ->assertStatus(401)
             ->assertJson([
@@ -53,28 +56,28 @@ class UnderConstructionModeTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_sets_title_correctly()
     {
         $this->get('/under/construction')
             ->assertSee('title');
     }
 
-    /** @test */
+    #[Test]
     public function it_sets_back_button_translation_correctly()
     {
         $this->get('/under/construction')
             ->assertSee('back-button');
     }
 
-    /** @test */
+    #[Test]
     public function it_sets_show_button_translation_correctly()
     {
         $this->get('/under/construction')
             ->assertSee('show');
     }
 
-    /** @test */
+    #[Test]
     public function it_sets_hide_button_translation_correctly()
     {
         $this->get('/under/construction')
