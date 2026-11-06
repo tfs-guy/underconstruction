@@ -14,10 +14,9 @@
         "illuminate/support": "^6.18|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0|^13.0"
     },
     "require-dev": {
-        "orchestra/testbench": "~3.8.0|^4.0|^7.0|^8.0",
-        "phpunit/phpunit": "^10.0",
-        "mockery/mockery": "^1.4",
-        "symfony/thanks": "^1.0"
+        "orchestra/testbench": "^10.0|^11.0",
+        "phpunit/phpunit": "^11.5|^12.0",
+        "mockery/mockery": "^1.6"
     },
     "autoload-dev": {
         "psr-4": {
@@ -39,5 +38,6 @@
                 "LarsJanssen\\UnderConstruction\\UnderConstructionServiceProvider"
             ]
         }
-    }
+    },
+    "prefer-stable": true
 }

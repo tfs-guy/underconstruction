@@ -33,7 +33,7 @@ class TestCase extends Orchestra
     {
         $app['config']->set('app.key', '6rE9Nz59bGRbeMATftriyQjrpF7DcOQm');
 
-        $app['config']->set('under-construction.hash', 9999);
+        $app['config']->set('under-construction.hash', '$2y$12$NuiwuT6nmUZLTCDlfq368OgMUwNO70AcO3XtiP2f6PY3F6sP6WVca');
     }
 
     protected function registerMiddleware()
